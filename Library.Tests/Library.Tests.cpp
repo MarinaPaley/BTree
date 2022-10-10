@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CppUnitTest.h"
+#include "..\Library\Node.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -9,8 +10,42 @@ namespace LibraryTests
 	{
 	public:
 		
-		TEST_METHOD(TestMethod1)
+		TEST_METHOD(Ctor_ValidData_Success)
 		{
+			// Arrange & Act
+			auto node = new Node(1);
+			// Assert
+			Assert::IsNotNull(node);
+		}
+
+		TEST_METHOD(LeftShiftOperator_ValidData_Success)
+		{
+			// Arrange
+			const std::string expected = "1";
+			const auto node  = Node(1);
+
+			// Act
+			std::stringstream  out;
+			out << node;
+			const std::string actual = out.str();
+
+			// Assert
+			Assert::AreEqual(expected, actual);
+		}
+
+		TEST_METHOD(RightShiftOperator_ValidData_Success)
+		{
+			// Arrange
+			std::stringstream buffer;
+			buffer << 1;
+			Node expected = 1;
+
+			// Act
+			Node actual;
+			buffer >> actual;
+
+			// Assert
+			Assert::AreEqual(expected, actual);
 		}
 	};
 }
