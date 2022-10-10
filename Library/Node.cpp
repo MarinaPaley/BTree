@@ -45,3 +45,28 @@ bool operator==(const Node& lha, const Node& rha)
 {
 	return lha.data == rha.data;
 }
+
+bool operator!=(const Node& lha, const Node& rha)
+{
+	return !(lha == rha);
+}
+
+bool operator>(const Node& lha, const Node& rha)
+{
+	return lha.data > rha.data;
+}
+
+bool operator>=(const Node& lha, const Node& rha)
+{
+	return lha.data >= rha.data;
+}
+
+bool operator<(const Node& lha, const Node& rha)
+{
+	return lha.data > rha.data;
+}
+
+bool operator<=(const Node& lha, const Node& rha)
+{
+	return lha.data <= rha.data;
+}

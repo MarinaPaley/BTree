@@ -47,5 +47,64 @@ namespace LibraryTests
 			// Assert
 			Assert::AreEqual(expected, actual);
 		}
+
+		TEST_METHOD(EqualOperator)
+		{
+			// Arrange
+			const auto lha = Node(1);
+			const auto rha = Node(1);
+			// Act & Assert
+			Assert::IsTrue(lha == rha);
+		}
+
+		TEST_METHOD(NotEqualOperator)
+		{
+			// Arrange
+			const auto lha = Node(1);
+			const auto rha = Node(2);
+			// Act & Assert
+			Assert::IsTrue(lha != rha);
+		}
+
+		TEST_METHOD(AboveOperator)
+		{
+			// Arrange
+			const auto lha = Node(2);
+			const auto rha = Node(1);
+			// Act & Assert
+			Assert::IsTrue(lha > rha);
+		}
+
+		TEST_METHOD(AboveOrEqualOperator)
+		{
+			// Arrange
+			const auto lha = Node(2);
+			const auto rha = Node(1);
+			const auto node = Node(1);
+			// Act & Assert
+			Assert::IsTrue(lha >= rha);
+			Assert::IsTrue(lha >= node);
+		}
+
+		TEST_METHOD(LessOperator)
+		{
+			// Arrange
+			const auto lha = Node(1);
+			const auto rha = Node(2);
+			// Act & Assert
+			Assert::IsTrue(lha < rha);
+		}
+
+		TEST_METHOD(LessOrEqualOperator)
+		{
+			// Arrange
+			const auto lha = Node(1);
+			const auto rha = Node(2);
+			const auto node = Node(1);
+
+			// Act & Assert
+			Assert::IsTrue(lha <= rha);
+			Assert::IsTrue(lha <= node);
+		}
 	};
 }

@@ -67,4 +67,44 @@ public:
 	* \return true, если равны.
 	*/
 	friend bool operator==(const Node& lha, const Node& rha);
+
+	/**
+	* \brief Оператор неравенства двух узлов.
+	* \param lha Левый узел.
+	* \param rha Правый узел.
+	* \return true, если не равны.
+	*/
+	friend bool operator!=(const Node& lha, const Node& rha);
+
+	/**
+	* \brief Оператор больше.
+	* \param lha Левый узел.
+	* \param rha Правый узел.
+	* \return true, если левый узел больше.
+	*/
+	friend bool operator>(const Node& lha, const Node& rha);
+
+	/**
+	* \brief Оператор больше или равно.
+	* \param lha Левый узел.
+	* \param rha Правый узел.
+	* \return true, если левый узел больше.
+	*/
+	friend bool operator>=(const Node& lha, const Node& rha);
+
+	/**
+	* \brief Оператор меньше.
+	* \param lha Левый узел.
+	* \param rha Правый узел.
+	* \return true, если левый узел меньше.
+	*/
+	friend bool operator<(const Node& lha, const Node& rha);
+
+	/**
+	* \brief Оператор меньше.
+	* \param lha Левый узел.
+	* \parm rha Правый узел.
+	* \return true, если левый узел меньше.
+	*/
+	friend bool operator<=(const Node& lha, const Node& rha);
 };
