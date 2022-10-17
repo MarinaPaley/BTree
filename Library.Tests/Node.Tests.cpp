@@ -4,9 +4,9 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace LibraryTests
+namespace NodeTests
 {
-	TEST_CLASS(LibraryTests)
+	TEST_CLASS(NodeTests)
 	{
 	public:
 		
@@ -91,8 +91,10 @@ namespace LibraryTests
 			// Arrange
 			const auto lha = Node(1);
 			const auto rha = Node(2);
+
 			// Act & Assert
 			Assert::IsTrue(lha < rha);
+			Assert::IsFalse(lha > rha);
 		}
 
 		TEST_METHOD(LessOrEqualOperator)

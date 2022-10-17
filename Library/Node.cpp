@@ -12,6 +12,25 @@ Node::Node(const int data)
 {
 }
 
+void Node::Invalidate()
+{
+	if (this->parent != nullptr)
+	{
+		if (this->parent->left == this)
+		{
+			this->parent->left = nullptr;
+		}
+		else
+		{
+			this->parent->right->right = nullptr;
+		}
+	}
+
+	this->parent = nullptr;
+	this->left = nullptr;
+	this->right = nullptr;
+}
+
 
 std::wstring ToString(const Node& node)
 {
@@ -63,7 +82,7 @@ bool operator>=(const Node& lha, const Node& rha)
 
 bool operator<(const Node& lha, const Node& rha)
 {
-	return lha.data > rha.data;
+	return lha.data < rha.data;
 }
 
 bool operator<=(const Node& lha, const Node& rha)

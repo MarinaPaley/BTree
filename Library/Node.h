@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 
-class Node;
+struct Node;
 /**
 * \brief Статический метод преобразования в строку.
 * \param node Узел дерева.
@@ -12,27 +12,28 @@ std::wstring ToString(const Node& node);
 /**
 * \brief Узел дерева.
 */
-class Node
+struct Node
 {
-private:
 	/**
 	* \brief Данные.
 	*/
 	int data;
+
 	/**
 	* \brief Указатель на левый узел.
 	*/
 	Node* left;
+
 	/**
 	* \brief Указатель на правый узел.
 	*/
 	Node* right;
+
 	/**
 	* \brief Указатель на родительский узел.
 	*/
 	Node* parent;
 
-public:
 	/**
 	* \brief Инициализация нового экземпляра класса Узел дерева.
 	* \brif Необходим для тестов.
@@ -107,4 +108,6 @@ public:
 	* \return true, если левый узел меньше.
 	*/
 	friend bool operator<=(const Node& lha, const Node& rha);
+
+	void Invalidate();
 };
