@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "CppUnitTest.h"
 #include "..\Library\Tree.h"
 
@@ -14,6 +13,7 @@ namespace TreeTests
 		{
 			// Arrange & Act
 			auto tree = new Tree();
+
 			// Assert
 			Assert::AreEqual(tree->GetCount(), 0);
 		}
@@ -61,7 +61,7 @@ namespace TreeTests
 			auto deleted = tree->Delete(6);
 
 			//
-			Assert::IsFalse (deleted);
+			Assert::IsFalse(deleted);
 			Assert::AreEqual(tree->GetCount(), 5);
 		}
 

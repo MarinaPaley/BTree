@@ -2,19 +2,19 @@
 
 std::wstring ToString(const Tree& tree)
 {
-	return std::wstring();
+    return std::wstring();
 }
 
 std::ostream& operator<<(std::ostream& out, const Tree& tree)
 {
-	// TODO: âñòàâüòå çäåñü îïåðàòîð return
-	return out;
+    // TODO: Ð²ÑÑ‚Ð°Ð²ÑŒÑ‚Ðµ Ð·Ð´ÐµÑÑŒ Ð¾Ð¿ÐµÑ€Ð°Ñ‚Ð¾Ñ€ return
+    return out;
 }
 
 std::wostream& operator<<(std::wostream& out, const Tree& tree)
 {
-	// TODO: âñòàâüòå çäåñü îïåðàòîð return
-	return out;
+    // TODO: Ð²ÑÑ‚Ð°Ð²ÑŒÑ‚Ðµ Ð·Ð´ÐµÑÑŒ Ð¾Ð¿ÐµÑ€Ð°Ñ‚Ð¾Ñ€ return
+    return out;
 }
 
 Node* Tree::Insert(Node* current, Node* node, Node* parent)
@@ -26,11 +26,11 @@ Node* Tree::Insert(Node* current, Node* node, Node* parent)
         return current;
     }
 
-    if (node < current)
+    if (*node < *current)
     {
         current->left = this->Insert(current->left, node, current);
     }
-    else if (node > current)
+    else if (*node > *current)
     {
         current->right = this->Insert(current->right, node, current);
     }
@@ -137,7 +137,7 @@ Tree::Tree(std::initializer_list<int> elements): Tree()
 
 int Tree::GetCount() const noexcept
 {
-	return this->count;
+    return this->count;
 }
 
 bool Tree::Add(const int element) noexcept
@@ -153,7 +153,7 @@ bool Tree::Add(const int element) noexcept
         this->root = this->Insert(this->root, node, this->root->parent);
     }
 
-    this->count += 1;
+    this->count++;
     return true;
 }
 
@@ -165,15 +165,15 @@ bool Tree::Delete(const int element) noexcept
     }
 
     auto deleted = this->Find(this->root, element);
-
     if (deleted == nullptr)
     {
         return false;
     }
 
     this->Delete(deleted);
+
     this->count--;
-	return true;
+    return true;
 }
 
 bool Tree::Contains(const int element) const noexcept
@@ -182,13 +182,13 @@ bool Tree::Contains(const int element) const noexcept
     {
         return false;
     }
-	
+
     return (this->Find(this->root, element) != nullptr);
 }
 
 bool Tree::IsEmpty() const noexcept
 {
-	return this->root == nullptr;
+    return this->root == nullptr;
 }
 
 void Tree::Clear() noexcept

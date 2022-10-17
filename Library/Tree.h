@@ -5,52 +5,52 @@
 class Tree;
 
 /**
-* \*brief Метод вывода на "печать" дерева.
-* \*param tree Дерево.
+* \*brief РњРµС‚РѕРґ РІС‹РІРѕРґР° РЅР° "РїРµС‡Р°С‚СЊ" РґРµСЂРµРІР°.
+* \*param tree Р”РµСЂРµРІРѕ.
 */
 std::wstring ToString(const Tree& tree);
 
 /**
-* \brief Класс дерево.
+* \brief РљР»Р°СЃСЃ РґРµСЂРµРІРѕ.
 */
 class Tree
 {
 private:
     /**
-    * \*brief Корень.
+    * \*brief РљРѕСЂРµРЅСЊ.
     */
     Node* root;
 
     /**
-    * \brief Количество элементов.
+    * \brief РљРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ.
     */
     int count;
 
     /**
-    * \brief Конструктор копирования. Удален.
+    * \brief РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ. РЈРґР°Р»РµРЅ.
     */
     Tree(const Tree& other) = delete;
 
     /**
-    * \brief Конструктор перемещения. Удален.
+    * \brief РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРµСЂРµРјРµС‰РµРЅРёСЏ. РЈРґР°Р»РµРЅ.
     */
     Tree(Tree&& other) = delete;
 
     /**
-    * \brief Оператор копирования. Удален.
+    * \brief РћРїРµСЂР°С‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ. РЈРґР°Р»РµРЅ.
     */
     Tree& operator=(const Tree& other) = delete;
 
     /**
-    * \brief Оператор перемещающего копирования. Удален.
+    * \brief РћРїРµСЂР°С‚РѕСЂ РїРµСЂРµРјРµС‰Р°СЋС‰РµРіРѕ РєРѕРїРёСЂРѕРІР°РЅРёСЏ. РЈРґР°Р»РµРЅ.
     */
     Tree& operator=(Tree&& other) = delete;
 
     /**
-    * \brief Рекурсивный метод вставки узла.
-    * \param current Текущий узел.
-    * \param node Вставляемый узел.
-    * \param parent. Родительский узел.
+    * \brief Р РµРєСѓСЂСЃРёРІРЅС‹Р№ РјРµС‚РѕРґ РІСЃС‚Р°РІРєРё СѓР·Р»Р°.
+    * \param current РўРµРєСѓС‰РёР№ СѓР·РµР».
+    * \param node Р’СЃС‚Р°РІР»СЏРµРјС‹Р№ СѓР·РµР».
+    * \param parent. Р РѕРґРёС‚РµР»СЊСЃРєРёР№ СѓР·РµР».
     */
     Node* Insert(Node* current, Node* node, Node* parent);
 
@@ -59,10 +59,10 @@ private:
     void Transplant(Node* parent, Node* son);
 
     /**
-    * \brief Находит элемент в дереве.
-    * \param current Текущий узел.
-    * \param target Искомый элемент.
-    * \return Найденный узел.
+    * \brief РќР°С…РѕРґРёС‚ СЌР»РµРјРµРЅС‚ РІ РґРµСЂРµРІРµ.
+    * \param current РўРµРєСѓС‰РёР№ СѓР·РµР».
+    * \param target РСЃРєРѕРјС‹Р№ СЌР»РµРјРµРЅС‚.
+    * \return РќР°Р№РґРµРЅРЅС‹Р№ СѓР·РµР».
     */
     Node* Find(Node* current, int target) const noexcept;
 
@@ -77,16 +77,16 @@ public:
     bool IsEmpty() const noexcept;
     void Clear() noexcept;
     /**
-    * \brief Поиск минимального узла.
-    * \param node Начальный узел.
-    * \return  Минимальный узел.
+    * \brief РџРѕРёСЃРє РјРёРЅРёРјР°Р»СЊРЅРѕРіРѕ СѓР·Р»Р°.
+    * \param node РќР°С‡Р°Р»СЊРЅС‹Р№ СѓР·РµР».
+    * \return  РњРёРЅРёРјР°Р»СЊРЅС‹Р№ СѓР·РµР».
     */
     Node* TreeMinimum(Node* node);
 
     /**
-    * \brief Поиск максимального  узла.
-    * \param node Начальный узел.
-    * \return  Максимльный узел.
+    * \brief РџРѕРёСЃРє РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ  СѓР·Р»Р°.
+    * \param node РќР°С‡Р°Р»СЊРЅС‹Р№ СѓР·РµР».
+    * \return  РњР°РєСЃРёРјР»СЊРЅС‹Р№ СѓР·РµР».
     */
     Node* TreeMaximum(Node* node);
     friend std::ostream& operator<<(std::ostream& out, const Tree& tree);

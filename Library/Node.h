@@ -3,111 +3,112 @@
 
 struct Node;
 /**
-* \brief Статический метод преобразования в строку.
-* \param node Узел дерева.
-* \return Данные в виде строки.
+* \brief РЎС‚Р°С‚РёС‡РµСЃРєРёР№ РјРµС‚РѕРґ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ РІ СЃС‚СЂРѕРєСѓ.
+* \param node РЈР·РµР» РґРµСЂРµРІР°.
+* \return Р”Р°РЅРЅС‹Рµ РІ РІРёРґРµ СЃС‚СЂРѕРєРё.
 */
 std::wstring ToString(const Node& node);
 
 /**
-* \brief Узел дерева.
+* \brief РЈР·РµР» РґРµСЂРµРІР°.
 */
 struct Node
 {
-	/**
-	* \brief Данные.
-	*/
-	int data;
+    /**
+    * \brief Р”Р°РЅРЅС‹Рµ.
+    */
+    int data;
 
-	/**
-	* \brief Указатель на левый узел.
-	*/
-	Node* left;
+    /**
+    * \brief РЈРєР°Р·Р°С‚РµР»СЊ РЅР° Р»РµРІС‹Р№ СѓР·РµР».
+    */
+    Node* left;
 
-	/**
-	* \brief Указатель на правый узел.
-	*/
-	Node* right;
+    /**
+    * \brief РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РїСЂР°РІС‹Р№ СѓР·РµР».
+    */
+    Node* right;
 
-	/**
-	* \brief Указатель на родительский узел.
-	*/
-	Node* parent;
+    /**
+    * \brief РЈРєР°Р·Р°С‚РµР»СЊ РЅР° СЂРѕРґРёС‚РµР»СЊСЃРєРёР№ СѓР·РµР».
+    */
+    Node* parent;
 
-	/**
-	* \brief Инициализация нового экземпляра класса Узел дерева.
-	* \brif Необходим для тестов.
-	*/
-	Node();
+    /**
+    * \brief РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РЅРѕРІРѕРіРѕ СЌРєР·РµРјРїР»СЏСЂР° РєР»Р°СЃСЃР° РЈР·РµР» РґРµСЂРµРІР°.
+    * \brif РќРµРѕР±С…РѕРґРёРј РґР»СЏ С‚РµСЃС‚РѕРІ.
+    */
+    Node();
 
-	/**
-	* \brief Инициализация нового экземпляра класса Узел дерева.
-	* \param data Данные.
-	*/
-	Node(const int data);
+    /**
+    * \brief РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РЅРѕРІРѕРіРѕ СЌРєР·РµРјРїР»СЏСЂР° РєР»Р°СЃСЃР° РЈР·РµР» РґРµСЂРµРІР°.
+    * \param data Р”Р°РЅРЅС‹Рµ.
+    */
+    Node(const int data);
 
-	/**
-	* \brief Оператор вывода в стандартный поток данных.
-	* \param out Стандартный поток данных.
-	* \param node Узел дерева.
-	*/
-	friend std::ostream& operator<<(std::ostream& out, const Node& node);
+    /**
+    * \brief РћРїРµСЂР°С‚РѕСЂ РІС‹РІРѕРґР° РІ СЃС‚Р°РЅРґР°СЂС‚РЅС‹Р№ РїРѕС‚РѕРє РґР°РЅРЅС‹С….
+    * \param out РЎС‚Р°РЅРґР°СЂС‚РЅС‹Р№ РїРѕС‚РѕРє РґР°РЅРЅС‹С….
+    * \param node РЈР·РµР» РґРµСЂРµРІР°.
+    */
+    friend std::ostream& operator<<(std::ostream& out, const Node& node);
 
-	friend std::wostream& operator<<(std::wostream& out, const Node& node);
-	/**
-	* \brief Оператор ввода из стандартного потока данных.
-	* \param out Стандартный поток данных.
-	* \param node Узел дерева.
-	*/
-	friend std::istream& operator>>(std::istream& in, Node& node);
+    friend std::wostream& operator<<(std::wostream& out, const Node& node);
 
-	/**
-	* \brief Оператор равенства двух узлов.
-	* \param lha Левый узел.
-	* \parm rha Правый узел.
-	* \return true, если равны.
-	*/
-	friend bool operator==(const Node& lha, const Node& rha);
+    /**
+    * \brief РћРїРµСЂР°С‚РѕСЂ РІРІРѕРґР° РёР· СЃС‚Р°РЅРґР°СЂС‚РЅРѕРіРѕ РїРѕС‚РѕРєР° РґР°РЅРЅС‹С….
+    * \param out РЎС‚Р°РЅРґР°СЂС‚РЅС‹Р№ РїРѕС‚РѕРє РґР°РЅРЅС‹С….
+    * \param node РЈР·РµР» РґРµСЂРµРІР°.
+    */
+    friend std::istream& operator>>(std::istream& in, Node& node);
 
-	/**
-	* \brief Оператор неравенства двух узлов.
-	* \param lha Левый узел.
-	* \param rha Правый узел.
-	* \return true, если не равны.
-	*/
-	friend bool operator!=(const Node& lha, const Node& rha);
+    /**
+    * \brief РћРїРµСЂР°С‚РѕСЂ СЂР°РІРµРЅСЃС‚РІР° РґРІСѓС… СѓР·Р»РѕРІ.
+    * \param lha Р›РµРІС‹Р№ СѓР·РµР».
+    * \parm rha РџСЂР°РІС‹Р№ СѓР·РµР».
+    * \return true, РµСЃР»Рё СЂР°РІРЅС‹.
+    */
+    friend bool operator==(const Node& lha, const Node& rha);
 
-	/**
-	* \brief Оператор больше.
-	* \param lha Левый узел.
-	* \param rha Правый узел.
-	* \return true, если левый узел больше.
-	*/
-	friend bool operator>(const Node& lha, const Node& rha);
+    /**
+    * \brief РћРїРµСЂР°С‚РѕСЂ РЅРµСЂР°РІРµРЅСЃС‚РІР° РґРІСѓС… СѓР·Р»РѕРІ.
+    * \param lha Р›РµРІС‹Р№ СѓР·РµР».
+    * \param rha РџСЂР°РІС‹Р№ СѓР·РµР».
+    * \return true, РµСЃР»Рё РЅРµ СЂР°РІРЅС‹.
+    */
+    friend bool operator!=(const Node& lha, const Node& rha);
 
-	/**
-	* \brief Оператор больше или равно.
-	* \param lha Левый узел.
-	* \param rha Правый узел.
-	* \return true, если левый узел больше.
-	*/
-	friend bool operator>=(const Node& lha, const Node& rha);
+    /**
+    * \brief РћРїРµСЂР°С‚РѕСЂ Р±РѕР»СЊС€Рµ.
+    * \param lha Р›РµРІС‹Р№ СѓР·РµР».
+    * \param rha РџСЂР°РІС‹Р№ СѓР·РµР».
+    * \return true, РµСЃР»Рё Р»РµРІС‹Р№ СѓР·РµР» Р±РѕР»СЊС€Рµ.
+    */
+    friend bool operator>(const Node& lha, const Node& rha);
 
-	/**
-	* \brief Оператор меньше.
-	* \param lha Левый узел.
-	* \param rha Правый узел.
-	* \return true, если левый узел меньше.
-	*/
-	friend bool operator<(const Node& lha, const Node& rha);
+    /**
+    * \brief РћРїРµСЂР°С‚РѕСЂ Р±РѕР»СЊС€Рµ РёР»Рё СЂР°РІРЅРѕ.
+    * \param lha Р›РµРІС‹Р№ СѓР·РµР».
+    * \param rha РџСЂР°РІС‹Р№ СѓР·РµР».
+    * \return true, РµСЃР»Рё Р»РµРІС‹Р№ СѓР·РµР» Р±РѕР»СЊС€Рµ.
+    */
+    friend bool operator>=(const Node& lha, const Node& rha);
 
-	/**
-	* \brief Оператор меньше.
-	* \param lha Левый узел.
-	* \parm rha Правый узел.
-	* \return true, если левый узел меньше.
-	*/
-	friend bool operator<=(const Node& lha, const Node& rha);
+    /**
+    * \brief РћРїРµСЂР°С‚РѕСЂ РјРµРЅСЊС€Рµ.
+    * \param lha Р›РµРІС‹Р№ СѓР·РµР».
+    * \param rha РџСЂР°РІС‹Р№ СѓР·РµР».
+    * \return true, РµСЃР»Рё Р»РµРІС‹Р№ СѓР·РµР» РјРµРЅСЊС€Рµ.
+    */
+    friend bool operator<(const Node& lha, const Node& rha);
 
-	void Invalidate();
+    /**
+    * \brief РћРїРµСЂР°С‚РѕСЂ РјРµРЅСЊС€Рµ.
+    * \param lha Р›РµРІС‹Р№ СѓР·РµР».
+    * \parm rha РџСЂР°РІС‹Р№ СѓР·РµР».
+    * \return true, РµСЃР»Рё Р»РµРІС‹Р№ СѓР·РµР» РјРµРЅСЊС€Рµ.
+    */
+    friend bool operator<=(const Node& lha, const Node& rha);
+
+    void Invalidate();
 };
