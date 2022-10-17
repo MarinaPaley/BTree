@@ -2,7 +2,7 @@
 #include <string>
 #include <sstream>
 
-Node::Node() 
+Node::Node()
     : data(0), left(nullptr), right(nullptr), parent(nullptr)
 {
 }

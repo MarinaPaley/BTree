@@ -40,9 +40,19 @@ Node* Tree::Insert(Node* current, Node* node, Node* parent)
 
 void Tree::Delete(Node* deleted)
 {
-    if (deleted->left == nullptr && deleted->right == nullptr)
+    if (deleted->left != nullptr && deleted->right != nullptr)
     {
-        deleted->Invalidate();
+        auto successor = this->TreeMinimum(deleted->right);
+        if (successor->parent != deleted)
+        {
+            this->Transplant(successor, successor->right);
+            successor->right = deleted->right;
+            successor->right->parent = successor;
+        }
+
+        this->Transplant(deleted, successor);
+        successor->left = deleted->left;
+        successor->left->parent = successor;
     }
     else if (deleted->left == nullptr)
     {
@@ -52,22 +62,9 @@ void Tree::Delete(Node* deleted)
     {
         this->Transplant(deleted, deleted->left);
     }
-    else
-    {
-        auto successor = this->TreeMinimum(deleted->right);
-        {
-            if (successor->parent != deleted)
-            {
-                this->Transplant(successor, successor->right);
-                successor->right = deleted->right;
-                successor->right->parent = successor;
-            }
 
-            this->Transplant(deleted, successor);
-            successor->left = deleted->left;
-            successor->left->parent = successor;
-        }
-    }
+    deleted->Invalidate();
+    delete deleted;
 }
 
 void Tree::Transplant(Node* parent, Node* son)
@@ -108,11 +105,11 @@ Node* Tree::Find(Node* current, int target) const noexcept
         return this->Find(current->right, target);
     }
 
-    else if (target == current->data)
+    if (target == current->data)
     {
         return current;
     }
-    else 
+    else
     {
         return nullptr;
     }
