@@ -116,7 +116,8 @@ Node* Tree::Find(Node* current, int target) const noexcept
 
 }
 
-Tree::Tree() : root(nullptr), count(0)
+Tree::Tree()
+    : root(nullptr), count(0)
 {
 }
 
@@ -124,7 +125,8 @@ Tree::~Tree()
 {
 }
 
-Tree::Tree(std::initializer_list<int> elements): Tree()
+Tree::Tree(std::initializer_list<int> elements)
+    : Tree()
 {
     for (auto it = elements.begin(); it != elements.end(); it++)
     {

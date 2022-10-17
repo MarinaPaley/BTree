@@ -3,7 +3,7 @@
 #include <sstream>
 
 Node::Node()
-    : data(0), left(nullptr), right(nullptr), parent(nullptr)
+    : Node(0)
 {
 }
 
