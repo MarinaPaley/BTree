@@ -68,6 +68,8 @@ private:
 
     void DestroyRecursive(Node* deleted);
 
+    void InOrder(std::queue<Node*>& queue, Node* node) const;
+
 public:
     Tree();
     ~Tree();

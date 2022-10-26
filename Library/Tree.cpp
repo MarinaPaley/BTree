@@ -1,14 +1,28 @@
 #include "Tree.h"
+#include <queue>
 
 std::wstring ToString(const Tree& tree)
 {
-
     return std::wstring();
 }
 
 std::ostream& operator<<(std::ostream& out, const Tree& tree)
 {
-    // TODO: вставьте здесь оператор return
+    if (tree.IsEmpty())
+    {
+        return out;
+    }
+
+    std::queue<Node*> queue;
+    tree.InOrder(queue, tree.root);
+
+    while (!queue.empty())
+    {
+        Node* node = queue.front();
+        out << node;
+        queue.pop();
+    }
+
     return out;
 }
 
@@ -126,6 +140,18 @@ void Tree::DestroyRecursive(Node* deleted)
     this->DestroyRecursive(deleted->left);
     this->DestroyRecursive(deleted->right);
     delete deleted;
+}
+
+void Tree::InOrder(std::queue<Node*>& queue, Node* node) const
+{
+    if (node == nullptr)
+    {
+        return;
+    }
+
+    this->InOrder(queue, node->left);
+    queue.push(node);
+    this->InOrder(queue, node->right);
 }
 
 Tree::Tree()
