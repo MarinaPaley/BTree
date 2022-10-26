@@ -47,6 +47,11 @@ struct Node
     Node(const int data);
 
     /**
+    * \brief Декструктор
+    */
+    ~Node();
+
+    /**
     * \brief Оператор вывода в стандартный поток данных.
     * \param out Стандартный поток данных.
     * \param node Узел дерева.
@@ -109,6 +114,4 @@ struct Node
     * \return true, если левый узел меньше.
     */
     friend bool operator<=(const Node& lha, const Node& rha);
-
-    void Invalidate();
 };

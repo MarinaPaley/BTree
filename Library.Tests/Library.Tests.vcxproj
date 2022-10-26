@@ -148,8 +148,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Node.Tests.cpp" />
-    <ClCompile Include="Tree.Tests.cpp" />
+    <ClCompile Include="NodeTests.cpp" />
+    <ClCompile Include="TreeTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Library\Library.vcxproj">

@@ -2,6 +2,7 @@
 
 std::wstring ToString(const Tree& tree)
 {
+
     return std::wstring();
 }
 
@@ -63,7 +64,6 @@ void Tree::Delete(Node* deleted)
         this->Transplant(deleted, deleted->left);
     }
 
-    deleted->Invalidate();
     delete deleted;
 }
 
@@ -116,6 +116,18 @@ Node* Tree::Find(Node* current, int target) const noexcept
 
 }
 
+void Tree::DestroyRecursive(Node* deleted)
+{
+    if (deleted == nullptr)
+    {
+        return;
+    }
+
+    this->DestroyRecursive(deleted->left);
+    this->DestroyRecursive(deleted->right);
+    delete deleted;
+}
+
 Tree::Tree()
     : root(nullptr), count(0)
 {
@@ -123,6 +135,7 @@ Tree::Tree()
 
 Tree::~Tree()
 {
+    this->DestroyRecursive(this->root);
 }
 
 Tree::Tree(std::initializer_list<int> elements)

@@ -12,8 +12,9 @@ Node::Node(const int data)
 {
 }
 
-void Node::Invalidate()
+Node::~Node()
 {
+
     if (this->parent != nullptr)
     {
         if (this->parent->left == this)
@@ -30,6 +31,7 @@ void Node::Invalidate()
     this->left = nullptr;
     this->right = nullptr;
 }
+
 
 
 std::wstring ToString(const Node& node)

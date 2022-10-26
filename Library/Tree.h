@@ -66,6 +66,8 @@ private:
     */
     Node* Find(Node* current, int target) const noexcept;
 
+    void DestroyRecursive(Node* deleted);
+
 public:
     Tree();
     ~Tree();
