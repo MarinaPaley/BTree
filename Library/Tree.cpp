@@ -1,26 +1,38 @@
 #include "Tree.h"
 #include <queue>
+#include <sstream>
 
 std::wstring ToString(const Tree& tree)
 {
-    return std::wstring();
+    return tree.ToString();
 }
 
 std::ostream& operator<<(std::ostream& out, const Tree& tree)
 {
     if (tree.IsEmpty())
     {
-        return out;
+        return out << "{}";
     }
 
     std::queue<Node*> queue;
     tree.InOrder(queue, tree.root);
-
+    const auto size = queue.size() - 1;
+    out << "{";
+    size_t index = 0;
     while (!queue.empty())
     {
         Node* node = queue.front();
-        out << node;
+        if (index < size)
+        {
+            out << *node << ", ";
+        }
+        else
+        {
+            out << *node << "}";
+        }
         queue.pop();
+
+        index++;
     }
 
     return out;
@@ -28,8 +40,7 @@ std::ostream& operator<<(std::ostream& out, const Tree& tree)
 
 std::wostream& operator<<(std::wostream& out, const Tree& tree)
 {
-    // TODO: вставьте здесь оператор return
-    return out;
+    return out << tree.ToString();
 }
 
 Node* Tree::Insert(Node* current, Node* node, Node* parent)
@@ -51,6 +62,41 @@ Node* Tree::Insert(Node* current, Node* node, Node* parent)
     }
 
     return current;
+}
+
+std::wstring Tree::ToString() const noexcept
+{
+    std::wstringstream buffer;
+    buffer << L"{";
+
+    if (this->IsEmpty())
+    {
+        buffer << L"}";
+        return buffer.str();
+    }
+
+    std::queue<Node*> queue;
+    
+    this->InOrder(queue, this->root);
+    const auto size = queue.size() - 1;
+    size_t index = 0;
+
+    while (!queue.empty())
+    {
+        Node* node = queue.front();
+        if (index < size)
+        {
+            buffer << node->data << L", ";
+        }
+        else
+        {
+            buffer << node->data << L"}";;
+        }
+        queue.pop();
+        index++;
+    }
+
+    return buffer.str();
 }
 
 void Tree::Delete(Node* deleted)
