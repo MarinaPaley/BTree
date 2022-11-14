@@ -47,7 +47,7 @@ struct Node
     Node(const int data);
 
     /**
-    * \brief Декструктор
+    * \brief Деструктор
     */
     ~Node();
 
@@ -58,6 +58,11 @@ struct Node
     */
     friend std::ostream& operator<<(std::ostream& out, const Node& node);
 
+    /**
+    * \brief Оператор вывода в стандартный поток данных.
+    * \param out Стандартный поток данных.
+    * \param node Узел дерева.
+    */    
     friend std::wostream& operator<<(std::wostream& out, const Node& node);
 
     /**

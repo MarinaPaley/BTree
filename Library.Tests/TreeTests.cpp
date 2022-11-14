@@ -88,5 +88,61 @@ namespace TreeTests
 			// Assert
 			Assert::IsFalse(contains);
 		}
+
+		TEST_METHOD(ToString_ValidData_Success)
+		{
+			// Arrange
+			auto tree = new Tree{ 5, 3, 7, 4, 8, 2, 6, 1 };
+			std::wstring expected = L"{1, 2, 3, 4, 5, 6, 7, 8}";
+
+			// Act
+			std::wstring actual = tree->ToString();
+
+			// Assert
+			Assert::AreEqual(expected, actual);
+		}
+
+		TEST_METHOD(ToString_EmptyData_Success)
+		{
+			// Arrange
+			auto tree = new Tree();
+			std::wstring expected = L"{}";
+
+			// Act
+			std::wstring actual = tree->ToString();
+
+			// Assert
+			Assert::AreEqual(expected, actual);
+		}
+
+		TEST_METHOD(ShiftOperator_ValidData_Success)
+		{
+			// Arrange
+			Tree tree  = { 5, 3, 7, 4, 8, 2, 6, 1 };
+			const std::string expected = "{1, 2, 3, 4, 5, 6, 7, 8}";
+
+			// Act
+			std::stringstream buffer;
+			buffer << tree;
+			const std::string actual = buffer.str();
+
+			// Assert
+			Assert::AreEqual(expected, actual);
+		}
+
+		TEST_METHOD(ShiftOperator_EmptyData_Success)
+		{
+			// Arrange
+			Tree tree;
+			const std::string expected = "{}";
+
+			// Act
+			std::stringstream buffer;
+			buffer << tree;
+			const std::string actual = buffer.str();
+
+			// Assert
+			Assert::AreEqual(expected, actual);
+		}
 	};
 };
