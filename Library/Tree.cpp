@@ -1,6 +1,7 @@
 #include "Tree.h"
 #include <queue>
 #include <sstream>
+#include <algorithm>
 
 std::wstring ToString(const Tree& tree)
 {
@@ -14,14 +15,15 @@ std::ostream& operator<<(std::ostream& out, const Tree& tree)
         return out << "{}";
     }
 
-    std::queue<Node*> queue;
-    tree.InOrder(queue, tree.root);
-    const auto size = queue.size() - 1;
+    const auto size = tree.queue.size() - 1;
     out << "{";
     size_t index = 0;
-    while (!queue.empty())
+
+    std::initializer_list<int> list;
+    list
+    while (!tree.queue.empty())
     {
-        Node* node = queue.front();
+        Node* node = tree.queue.front();
         if (index < size)
         {
             out << *node << ", ";
@@ -30,7 +32,7 @@ std::ostream& operator<<(std::ostream& out, const Tree& tree)
         {
             out << *node << "}";
         }
-        queue.pop();
+        tree.queue.pop();
 
         index++;
     }
@@ -188,20 +190,36 @@ void Tree::DestroyRecursive(Node* deleted)
     delete deleted;
 }
 
-void Tree::InOrder(std::queue<Node*>& queue, Node* node) const
+void Tree::InOrder(std::queue<Node*>& q, Node* node)
 {
     if (node == nullptr)
     {
         return;
     }
 
-    this->InOrder(queue, node->left);
-    queue.push(node);
-    this->InOrder(queue, node->right);
+    this->InOrder(this->queue, node->left);
+    this->queue.push(node);
+    this->InOrder(this->queue, node->right);
+}
+
+void Tree::InOrder()
+{
+    this->InOrder(this->queue, this->root); 
+}
+
+void Tree::QueueClear()
+{
+    if (!this->queue.empty())
+    {
+        for (auto index = 0; index < this->queue.size(); index++)
+        {
+            this->queue.pop();
+        }
+    }
 }
 
 Tree::Tree()
-    : root(nullptr), count(0)
+    : root(nullptr), count(0), queue()
 {
 }
 
@@ -238,6 +256,9 @@ bool Tree::Add(const int element) noexcept
     }
 
     this->count++;
+
+    this->QueueClear();
+    this->InOrder();
     return true;
 }
 
@@ -257,6 +278,8 @@ bool Tree::Delete(const int element) noexcept
     this->Delete(deleted);
 
     this->count--;
+    this->QueueClear();
+    this->InOrder();
     return true;
 }
 
@@ -297,4 +320,24 @@ Node* Tree::TreeMaximum(Node* node)
     }
 
     return node;
+}
+
+Iterator Tree::begin()
+{
+    return Iterator(this->TreeMinimum(this->root));
+}
+
+Iterator Tree::end()
+{
+    return Iterator(this->TreeMaximum(this->root)->right);
+}
+
+const Iterator Tree::cbegin()
+{
+    return Iterator(this->TreeMinimum(this->root));
+}
+
+const Iterator Tree::cend()
+{
+    return Iterator(this->TreeMaximum(this->root)->right);
 }

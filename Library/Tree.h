@@ -2,6 +2,7 @@
 #include <iostream>
 #include <queue>
 #include "Node.h"
+#include "Iterator.h"
 
 class Tree;
 
@@ -88,7 +89,13 @@ private:
     * \param queue Очередь, в которую вставлям последовательно элементы обхода.
     * \param node Текущий узел.
     */
-    void InOrder(std::queue<Node*>& queue, Node* node) const;
+    void InOrder(std::queue<Node*>& q, Node* node);
+
+    std::queue<Node*> queue;
+
+    void InOrder();
+
+    void QueueClear();
 
 public:
     /**
@@ -176,4 +183,11 @@ public:
     * \param tree Дерево.
     */
     friend std::wostream& operator<<(std::wostream& out, const Tree& tree);
+
+    friend class Iterator;
+    Iterator begin();
+    Iterator end();
+    const Iterator cbegin();
+    const Iterator cend();
+    Iterator operator++();
 };
